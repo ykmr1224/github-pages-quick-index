@@ -100,12 +100,12 @@ export class HtmlGenerator {
   }
 
   /**
-   * Organizes files by directory for better presentation
+   * Organizes files by directory for better presentation, with shallower directories first
    */
   private static organizeByDirectory(tree: TreeNode): Map<string, TreeNode[]> {
     const sections = new Map<string, TreeNode[]>()
     
-    const collectFiles = (node: TreeNode, currentDir: string = 'root') => {
+    const collectFiles = (node: TreeNode, currentDir: string = 'root', depth: number = 0) => {
       if (node.type === 'file') {
         if (!sections.has(currentDir)) {
           sections.set(currentDir, [])
@@ -121,7 +121,7 @@ export class HtmlGenerator {
             sections.get(dirKey)!.push(child)
           } else {
             const newDir = currentDir === 'root' ? node.name : `${currentDir}/${node.name}`
-            collectFiles(child, newDir)
+            collectFiles(child, newDir, depth + 1)
           }
         }
       }
@@ -133,7 +133,26 @@ export class HtmlGenerator {
       }
     }
 
-    return sections
+    // Sort sections by directory depth (shallower first)
+    const sortedSections = new Map<string, TreeNode[]>()
+    const sortedKeys = Array.from(sections.keys()).sort((a, b) => {
+      const depthA = a === 'root' ? 0 : a.split('/').length
+      const depthB = b === 'root' ? 0 : b.split('/').length
+      
+      // First sort by depth (shallower first)
+      if (depthA !== depthB) {
+        return depthA - depthB
+      }
+      
+      // Then sort alphabetically within same depth
+      return a.localeCompare(b)
+    })
+    
+    for (const key of sortedKeys) {
+      sortedSections.set(key, sections.get(key)!)
+    }
+
+    return sortedSections
   }
 
   /**
