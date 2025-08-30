@@ -22,18 +22,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
+      - name: Run tests with coverage
+        run: npm test -- --coverage
 
       - name: Build and package
         run: npm run all
 
-      - name: Test action
+      - name: Test action with real reports
         uses: ./
         id: test-action
         with:
-          reports-path: './test-html-files'
-          output-file: './test-index.html'
+          reports-path: './reports'
+          output-file: './reports-index.html'
           file-filter: ''
 
       - name: Check outputs
@@ -55,3 +55,12 @@ jobs:
           fi
           
           echo "✅ GitHub Pages Quick Index action test passed!"
+
+      - name: Upload test reports and index
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-with-index
+          path: |
+            reports/
+            reports-index.html
+          retention-days: 30

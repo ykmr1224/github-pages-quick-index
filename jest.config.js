@@ -10,6 +10,22 @@ module.exports = {
     'src/**/*.ts',
     '!src/**/*.d.ts'
   ],
-  coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov', 'html']
+  coverageDirectory: 'reports/coverage',
+  coverageReporters: ['text', 'lcov', 'html'],
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: './reports',
+        filename: 'test-report.html',
+        expand: true,
+        hideIcon: false,
+        pageTitle: 'GitHub Pages Quick Index - Test Report',
+        logoImgPath: undefined,
+        includeFailureMsg: true,
+        includeSuiteFailure: true
+      }
+    ]
+  ]
 }
