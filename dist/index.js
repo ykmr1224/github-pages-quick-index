@@ -50,13 +50,17 @@ async function run() {
         // Get inputs from action.yml
         const reportsPath = core.getInput('reports-path') || './reports';
         const outputFile = core.getInput('output-file') || './index.html';
+        const fileFilter = core.getInput('file-filter') || '';
         core.info(`Scanning reports directory: ${reportsPath}`);
         core.info(`Output file: ${outputFile}`);
+        if (fileFilter) {
+            core.info(`File filter: ${fileFilter}`);
+        }
         // Get the GitHub context
         const context = github.context;
         core.info(`Repository: ${context.repo.owner}/${context.repo.repo}`);
         // Create file crawler and find HTML files (reports)
-        const crawler = new file_crawler_1.FileCrawler();
+        const crawler = new file_crawler_1.FileCrawler(fileFilter);
         const htmlFiles = await crawler.crawlDirectory(reportsPath);
         core.info(`Found ${htmlFiles.length} HTML report files`);
         if (htmlFiles.length === 0) {

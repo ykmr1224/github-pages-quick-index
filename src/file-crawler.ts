@@ -8,6 +8,22 @@ import { TreeNode } from './types'
  */
 export class FileCrawler {
   private htmlFiles: string[] = []
+  private filterRegex: RegExp = /.*/  // Default matches everything
+  
+  /**
+   * Creates a new FileCrawler instance
+   * @param fileFilter Optional regex pattern to filter files
+   */
+  constructor(fileFilter?: string) {
+    if (fileFilter && fileFilter.trim() !== '') {
+      try {
+        this.filterRegex = new RegExp(fileFilter)
+      } catch (error) {
+        core.warning(`Invalid regex pattern "${fileFilter}": ${error}`)
+        this.filterRegex = /.*/ // If regex is invalid, include all files
+      }
+    }
+  }
   
   /**
    * Crawls a directory recursively to find HTML files
@@ -35,7 +51,7 @@ export class FileCrawler {
           const fullPath = path.join(currentPath, entry)
           await this.crawlRecursive(fullPath)
         }
-      } else if (stats.isFile() && this.isHtmlFile(currentPath)) {
+      } else if (stats.isFile() && this.isHtmlFile(currentPath) && this.matchesFilter(currentPath)) {
         this.htmlFiles.push(currentPath)
       }
     } catch (error) {
@@ -51,6 +67,16 @@ export class FileCrawler {
   private isHtmlFile(filePath: string): boolean {
     const ext = path.extname(filePath).toLowerCase()
     return ext === '.html' || ext === '.htm'
+  }
+
+  /**
+   * Checks if a file matches the compiled regex filter
+   * @param filePath The file path to check
+   * @returns True if the file matches the filter
+   */
+  private matchesFilter(filePath: string): boolean {
+    const fileName = path.basename(filePath)
+    return this.filterRegex.test(fileName)
   }
 
   /**

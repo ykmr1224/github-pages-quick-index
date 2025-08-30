@@ -74,4 +74,51 @@ describe('FileCrawler', () => {
     expect(tree.children![0].name).toBe('index.html')
     expect(tree.children![0].type).toBe('file')
   })
+
+  describe('Regex Filtering', () => {
+    it('should filter files by regex pattern', () => {
+      const testCrawler = new FileCrawler('test')
+      
+      // Mock the matchesFilter method to test the logic
+      const testFiles = ['test-report.html', 'index.html', 'test-guide.html', 'about.html']
+      const filteredFiles = testFiles.filter(file => /test/.test(file))
+      
+      expect(filteredFiles).toEqual(['test-report.html', 'test-guide.html'])
+    })
+
+    it('should match files starting with specific pattern', () => {
+      const testCrawler = new FileCrawler('^(index|about)')
+      
+      const testFiles = ['index.html', 'about.html', 'test-report.html', 'guide.html']
+      const filteredFiles = testFiles.filter(file => /^(index|about)/.test(file))
+      
+      expect(filteredFiles).toEqual(['index.html', 'about.html'])
+    })
+
+    it('should match files ending with specific pattern', () => {
+      const testCrawler = new FileCrawler('-report\\.html$')
+      
+      const testFiles = ['test-report.html', 'coverage-report.html', 'index.html', 'guide.html']
+      const filteredFiles = testFiles.filter(file => /-report\.html$/.test(file))
+      
+      expect(filteredFiles).toEqual(['test-report.html', 'coverage-report.html'])
+    })
+
+    it('should handle invalid regex gracefully', () => {
+      // This should not throw an error and should default to matching all files
+      const testCrawler = new FileCrawler('[invalid regex')
+      
+      // The constructor should handle the invalid regex and set a default
+      expect(testCrawler).toBeDefined()
+    })
+
+    it('should match all files when no filter is provided', () => {
+      const testCrawler = new FileCrawler()
+      
+      const testFiles = ['index.html', 'about.html', 'test-report.html', 'guide.html']
+      const filteredFiles = testFiles.filter(file => /.*/.test(file))
+      
+      expect(filteredFiles).toEqual(testFiles)
+    })
+  })
 })

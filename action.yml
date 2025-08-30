@@ -3,13 +3,17 @@ description: 'A minimal GitHub Action that generates a simple index.html to quic
 author: 'ykmr1224'
 inputs:
   reports-path:
+    description: 'Path to the directory containing HTML reports'
     required: false
-    description: 'Directory to scan for reports'
     default: './reports'
   output-file:
+    description: 'Path where the generated index.html will be saved'
     required: false
-    description: 'Output HTML file path'
     default: './index.html'
+  file-filter:
+    description: 'Regex pattern to filter HTML files (e.g., "test.*\\.html$" to match test files)'
+    required: false
+    default: ''
 outputs:
   index-path:
     description: 'Path to the generated index.html file'

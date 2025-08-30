@@ -4,6 +4,12 @@ import { TreeNode } from './types';
  */
 export declare class FileCrawler {
     private htmlFiles;
+    private filterRegex;
+    /**
+     * Creates a new FileCrawler instance
+     * @param fileFilter Optional regex pattern to filter files
+     */
+    constructor(fileFilter?: string);
     /**
      * Crawls a directory recursively to find HTML files
      * @param dirPath The directory path to crawl
@@ -21,6 +27,12 @@ export declare class FileCrawler {
      * @returns True if the file is an HTML file
      */
     private isHtmlFile;
+    /**
+     * Checks if a file matches the compiled regex filter
+     * @param filePath The file path to check
+     * @returns True if the file matches the filter
+     */
+    private matchesFilter;
     /**
      * Builds a tree structure from the found HTML files
      * @param htmlFiles Array of HTML file paths
