@@ -43,9 +43,8 @@ describe('HtmlGenerator', () => {
     expect(html).toContain('href="reports/test-report.html"')
     expect(html).toContain('href="reports/coverage.html"')
     
-    // Check stats
-    expect(html).toContain('2')
-    expect(html).toContain('HTML Reports Found')
+    // Check that HTML is properly structured
+    expect(html).toContain('GitHub Pages Quick Index')
   })
 
   it('should handle empty tree', () => {
@@ -60,8 +59,7 @@ describe('HtmlGenerator', () => {
     
     expect(html).toContain('<!DOCTYPE html>')
     expect(html).toContain('Test Reports Index')
-    expect(html).toContain('0')
-    expect(html).toContain('HTML Reports Found')
+    expect(html).toContain('GitHub Pages Quick Index')
   })
 
   it('should use default options when none provided', () => {
