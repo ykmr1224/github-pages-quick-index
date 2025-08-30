@@ -175,20 +175,6 @@ export class HtmlGenerator {
             border-bottom: 2px solid #e9ecef;
         }
         
-        .stats {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 6px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .stats-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #1976d2;
-        }
-        
         .footer {
             text-align: center;
             padding: 20px;
@@ -223,11 +209,6 @@ export class HtmlGenerator {
         
         <div class="content">
             {{fileList}}
-            
-            <div class="stats">
-                <div class="stats-number">{{fileCount}}</div>
-                <div>HTML Reports Found</div>
-            </div>
         </div>
         
         <div class="footer">
