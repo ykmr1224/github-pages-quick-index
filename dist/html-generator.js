@@ -35,6 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HtmlGenerator = void 0;
 const path = __importStar(require("path"));
+const fs = __importStar(require("fs"));
 /**
  * HTML generator class for creating index pages from tree structures
  */
@@ -47,199 +48,16 @@ class HtmlGenerator {
      */
     static generateIndex(tree, options = {}) {
         const { title = 'Test Reports Index', repositoryName = '', commitSha = '', timestamp = new Date().toISOString() } = options;
-        const htmlContent = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .header .subtitle {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-        
-        .metadata {
-            background: #f8f9fa;
-            padding: 15px 30px;
-            border-bottom: 1px solid #e9ecef;
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-        
-        .metadata span {
-            margin-right: 20px;
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .file-tree {
-            background: #f8f9fa;
-            border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .file-list {
-            list-style: none;
-        }
-        
-        .file-item {
-            margin: 8px 0;
-            padding: 12px 16px;
-            background: white;
-            border-radius: 6px;
-            border-left: 4px solid #007bff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-        }
-        
-        .file-item:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        }
-        
-        .file-item.directory {
-            border-left-color: #28a745;
-            background: #f8fff9;
-        }
-        
-        .file-item a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-        }
-        
-        .file-item a:hover {
-            color: #007bff;
-        }
-        
-        .file-icon {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .file-path {
-            font-size: 0.85rem;
-            color: #6c757d;
-            margin-top: 4px;
-        }
-        
-        .directory-section {
-            margin-bottom: 25px;
-        }
-        
-        .directory-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #495057;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e9ecef;
-        }
-        
-        .stats {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 6px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .stats-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #1976d2;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #6c757d;
-            font-size: 0.9rem;
-            border-top: 1px solid #e9ecef;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>📊 ${title}</h1>
-            <div class="subtitle">Quick access to test reports and documentation</div>
-        </div>
-        
-        ${this.generateMetadata(repositoryName, commitSha, timestamp)}
-        
-        <div class="content">
-            ${this.generateFileList(tree)}
-            
-            <div class="stats">
-                <div class="stats-number">${this.countFiles(tree)}</div>
-                <div>HTML Reports Found</div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            Generated by <strong>GitHub Pages Quick Index</strong> • ${new Date(timestamp).toLocaleString()}
-        </div>
-    </div>
-</body>
-</html>`;
-        return htmlContent;
+        // Load HTML template
+        const templatePath = path.join(__dirname, 'templates', 'index.html');
+        let template = fs.readFileSync(templatePath, 'utf8');
+        // Replace template variables
+        template = template.replace(/\{\{title\}\}/g, title);
+        template = template.replace(/\{\{metadata\}\}/g, this.generateMetadata(repositoryName, commitSha, timestamp));
+        template = template.replace(/\{\{fileList\}\}/g, this.generateFileList(tree));
+        template = template.replace(/\{\{fileCount\}\}/g, this.countFiles(tree).toString());
+        template = template.replace(/\{\{generatedTime\}\}/g, new Date(timestamp).toLocaleString());
+        return template;
     }
     /**
      * Generates metadata section HTML
