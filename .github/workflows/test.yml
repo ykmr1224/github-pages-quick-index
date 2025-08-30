@@ -70,22 +70,18 @@ jobs:
             index.html
           retention-days: 30
 
+      - name: Prepare GitHub Pages content
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p gh-pages-content
+          cp -r reports/ gh-pages-content/
+          cp index.html gh-pages-content/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./gh-pages-content
           publish_branch: gh-pages
-          include_files: |
-            reports/**
-            index.html
-          exclude_files: |
-            node_modules/**
-            .git/**
-            __tests__/**
-            src/**
-            scripts/**
-            dist/**
-            .github/**
           commit_message: 'Deploy test reports and index to GitHub Pages'
