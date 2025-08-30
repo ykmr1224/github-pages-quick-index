@@ -32,12 +32,26 @@ jobs:
         uses: ./
         id: test-action
         with:
-          example-input: 'Testing the action'
+          reports-path: './test-html-files'
+          output-file: './test-index.html'
+          file-filter: ''
 
-      - name: Check output
+      - name: Check outputs
         run: |
-          echo "Action output: ${{ steps.test-action.outputs.example-output }}"
-          if [ -z "${{ steps.test-action.outputs.example-output }}" ]; then
-            echo "Error: No output received from action"
+          echo "Generated index: ${{ steps.test-action.outputs.index-path }}"
+          echo "Files found: ${{ steps.test-action.outputs.file-count }}"
+          echo "HTML files: ${{ steps.test-action.outputs.html-files }}"
+          
+          # Check that the index file was created
+          if [ ! -f "${{ steps.test-action.outputs.index-path }}" ]; then
+            echo "Error: Index file was not created"
             exit 1
           fi
+          
+          # Check that files were found
+          if [ "${{ steps.test-action.outputs.file-count }}" -eq "0" ]; then
+            echo "Error: No HTML files were found"
+            exit 1
+          fi
+          
+          echo "✅ GitHub Pages Quick Index action test passed!"

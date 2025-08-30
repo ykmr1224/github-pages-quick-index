@@ -4,7 +4,7 @@
   "description": "A GitHub Action written in TypeScript",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "node scripts/embed-template.js && tsc",
     "package": "ncc build --source-map --license licenses.txt",
     "test": "jest",
     "all": "npm run build && npm run package"
