@@ -1,0 +1,1 @@
+{"version":3,"file":"tree-formatter.d.ts","sourceRoot":"","sources":["../src/tree-formatter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAA;AAElC;;GAEG;AACH,qBAAa,aAAa;IACxB;;;;;OAKG;IACH,MAAM,CAAC,YAAY,CAAC,IAAI,EAAE,QAAQ,EAAE,MAAM,GAAE,MAAW,GAAG,MAAM;IA0BhE;;;;;OAKG;IACH,MAAM,CAAC,UAAU,CAAC,IAAI,EAAE,QAAQ,EAAE,MAAM,GAAE,OAAc,GAAG,MAAM;CAGlE"}

@@ -1,17 +1,25 @@
-name: 'TypeScript GitHub Action'
-description: 'A GitHub Action written in TypeScript'
-author: 'Your Name'
+name: 'GitHub Pages Quick Index'
+description: 'A minimal GitHub Action that generates a simple index.html to quickly access test reports generated in workflows'
+author: 'ykmr1224'
 inputs:
-  example-input:
-    required: true
-    description: 'An example input parameter'
-    default: 'Hello World'
+  reports-path:
+    required: false
+    description: 'Directory to scan for reports'
+    default: './reports'
+  output-file:
+    required: false
+    description: 'Output HTML file path'
+    default: './index.html'
 outputs:
-  example-output:
-    description: 'An example output parameter'
+  index-path:
+    description: 'Path to the generated index.html file'
+  html-files:
+    description: 'JSON array of found HTML file paths'
+  file-count:
+    description: 'Number of HTML files found'
 runs:
   using: 'node20'
   main: 'dist/index.js'
 branding:
-  icon: 'activity'
+  icon: 'file-text'
   color: 'blue'
