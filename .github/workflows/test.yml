@@ -33,7 +33,7 @@ jobs:
         id: test-action
         with:
           reports-path: './reports'
-          output-file: './reports-index.html'
+          output-file: './index.html'
           file-filter: ''
 
       - name: Check outputs
@@ -62,5 +62,25 @@ jobs:
           name: test-reports-with-index
           path: |
             reports/
-            reports-index.html
+            index.html
           retention-days: 30
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          include_files: |
+            reports/**
+            index.html
+          exclude_files: |
+            node_modules/**
+            .git/**
+            __tests__/**
+            src/**
+            scripts/**
+            dist/**
+            .github/**
+          commit_message: 'Deploy test reports and index to GitHub Pages'
