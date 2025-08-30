@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Test Reports</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header .subtitle {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .metadata {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .metadata span {
+            margin-right: 20px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .file-tree {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .file-list {
+            list-style: none;
+        }
+        
+        .file-item {
+            margin: 8px 0;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .file-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .file-item.directory {
+            border-left-color: #28a745;
+            background: #f8fff9;
+        }
+        
+        .file-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .file-item a:hover {
+            color: #007bff;
+        }
+        
+        .file-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .file-path {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 4px;
+        }
+        
+        .directory-section {
+            margin-bottom: 25px;
+        }
+        
+        .directory-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .stats {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1976d2;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Demo Test Reports</h1>
+            <div class="subtitle">Quick access to test reports and documentation</div>
+        </div>
+        
+        <div class="metadata"><span>📁 Repository: <strong>ykmr1224/github-pages-quick-index</strong></span><span>🔗 Commit: <strong>abc123d</strong></span><span>🕒 Generated: <strong>8/30/2025, 2:21:08 PM</strong></span></div>
+        
+        <div class="content">
+            <div class="directory-section">
+          <div class="directory-title">📁 docs/api</div>
+          <ul class="file-list"><li class="file-item">
+          <a href="test-html-files/docs/api/reference.html" target="_blank">
+            <span class="file-icon">📄</span>
+            <div>
+              <div>reference.html</div>
+              <div class="file-path">test-html-files/docs/api/reference.html</div>
+            </div>
+          </a>
+        </li></ul></div><div class="directory-section">
+          <div class="directory-title">📁 docs</div>
+          <ul class="file-list"><li class="file-item">
+          <a href="test-html-files/docs/guide.html" target="_blank">
+            <span class="file-icon">📄</span>
+            <div>
+              <div>guide.html</div>
+              <div class="file-path">test-html-files/docs/guide.html</div>
+            </div>
+          </a>
+        </li></ul></div><ul class="file-list"><li class="file-item">
+          <a href="test-html-files/about.html" target="_blank">
+            <span class="file-icon">📄</span>
+            <div>
+              <div>about.html</div>
+              <div class="file-path">test-html-files/about.html</div>
+            </div>
+          </a>
+        </li><li class="file-item">
+          <a href="test-html-files/index.html" target="_blank">
+            <span class="file-icon">📄</span>
+            <div>
+              <div>index.html</div>
+              <div class="file-path">test-html-files/index.html</div>
+            </div>
+          </a>
+        </li></ul>
+            
+            <div class="stats">
+                <div class="stats-number">4</div>
+                <div>HTML Reports Found</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Generated by <strong>GitHub Pages Quick Index</strong> • 8/30/2025, 2:21:08 PM
+        </div>
+    </div>
+</body>
+</html>

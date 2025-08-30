@@ -36,8 +36,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.run = run;
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
+const fs = __importStar(require("fs"));
+const path = __importStar(require("path"));
 const file_crawler_1 = require("./file-crawler");
 const tree_formatter_1 = require("./tree-formatter");
+const html_generator_1 = require("./html-generator");
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
@@ -65,8 +68,23 @@ async function run() {
         }
         // Build tree structure for organizing reports
         const treeStructure = crawler.buildTreeStructure(htmlFiles, reportsPath);
-        // TODO: Next step will be to generate the actual index.html file
-        // For now, we're just providing the discovered structure
+        // Generate HTML index file
+        core.info('Generating HTML index file...');
+        const htmlContent = html_generator_1.HtmlGenerator.generateIndex(treeStructure, {
+            title: 'Test Reports Index',
+            repositoryName: `${context.repo.owner}/${context.repo.repo}`,
+            commitSha: context.sha,
+            timestamp: new Date().toISOString()
+        });
+        // Ensure output directory exists
+        const outputDir = path.dirname(outputFile);
+        if (outputDir !== '.' && !fs.existsSync(outputDir)) {
+            await fs.promises.mkdir(outputDir, { recursive: true });
+            core.info(`Created output directory: ${outputDir}`);
+        }
+        // Write the HTML file
+        await fs.promises.writeFile(outputFile, htmlContent, 'utf8');
+        core.info(`✅ Generated index file: ${outputFile}`);
         // Set outputs for other workflow steps to use
         core.setOutput('html-files', JSON.stringify(htmlFiles));
         core.setOutput('file-count', htmlFiles.length.toString());
@@ -77,7 +95,9 @@ async function run() {
         core.info('\nReport structure discovered:');
         const treeString = tree_formatter_1.TreeFormatter.treeToString(treeStructure);
         core.info(treeString);
-        core.info('File crawler completed successfully!');
+        core.info(`\n🎉 GitHub Pages Quick Index generated successfully!`);
+        core.info(`📄 Index file: ${outputFile}`);
+        core.info(`📊 Total reports: ${htmlFiles.length}`);
     }
     catch (error) {
         // Fail the workflow run if an error occurs

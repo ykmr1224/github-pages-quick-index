@@ -1,7 +1,10 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
+import * as fs from 'fs'
+import * as path from 'path'
 import { FileCrawler } from './file-crawler'
 import { TreeFormatter } from './tree-formatter'
+import { HtmlGenerator } from './html-generator'
 
 /**
  * The main function for the action.
@@ -37,8 +40,26 @@ export async function run(): Promise<void> {
     // Build tree structure for organizing reports
     const treeStructure = crawler.buildTreeStructure(htmlFiles, reportsPath)
     
-    // TODO: Next step will be to generate the actual index.html file
-    // For now, we're just providing the discovered structure
+    // Generate HTML index file
+    core.info('Generating HTML index file...')
+    
+    const htmlContent = HtmlGenerator.generateIndex(treeStructure, {
+      title: 'Test Reports Index',
+      repositoryName: `${context.repo.owner}/${context.repo.repo}`,
+      commitSha: context.sha,
+      timestamp: new Date().toISOString()
+    })
+    
+    // Ensure output directory exists
+    const outputDir = path.dirname(outputFile)
+    if (outputDir !== '.' && !fs.existsSync(outputDir)) {
+      await fs.promises.mkdir(outputDir, { recursive: true })
+      core.info(`Created output directory: ${outputDir}`)
+    }
+    
+    // Write the HTML file
+    await fs.promises.writeFile(outputFile, htmlContent, 'utf8')
+    core.info(`✅ Generated index file: ${outputFile}`)
     
     // Set outputs for other workflow steps to use
     core.setOutput('html-files', JSON.stringify(htmlFiles))
@@ -53,7 +74,9 @@ export async function run(): Promise<void> {
     const treeString = TreeFormatter.treeToString(treeStructure)
     core.info(treeString)
     
-    core.info('File crawler completed successfully!')
+    core.info(`\n🎉 GitHub Pages Quick Index generated successfully!`)
+    core.info(`📄 Index file: ${outputFile}`)
+    core.info(`📊 Total reports: ${htmlFiles.length}`)
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error instanceof Error ? error.message : String(error))

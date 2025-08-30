@@ -1,5 +1,6 @@
 import { FileCrawler } from '../src/file-crawler'
 import { TreeFormatter } from '../src/tree-formatter'
+import { HtmlGenerator } from '../src/html-generator'
 import * as core from '@actions/core'
 
 // Mock the GitHub Actions core library
@@ -103,5 +104,84 @@ describe('TreeFormatter', () => {
     expect(parsed.name).toBe('root')
     expect(parsed.type).toBe('directory')
     expect(parsed.children).toEqual([])
+  })
+})
+
+describe('HtmlGenerator', () => {
+  it('should generate valid HTML index', () => {
+    const tree = {
+      name: 'reports',
+      path: './reports',
+      type: 'directory' as const,
+      children: [
+        {
+          name: 'test-report.html',
+          path: './reports/test-report.html',
+          type: 'file' as const
+        },
+        {
+          name: 'coverage.html',
+          path: './reports/coverage.html',
+          type: 'file' as const
+        }
+      ]
+    }
+
+    const html = HtmlGenerator.generateIndex(tree, {
+      title: 'Test Reports',
+      repositoryName: 'test/repo',
+      commitSha: 'abc123',
+      timestamp: '2025-01-01T00:00:00.000Z'
+    })
+
+    // Check basic HTML structure
+    expect(html).toContain('<!DOCTYPE html>')
+    expect(html).toContain('<html lang="en">')
+    expect(html).toContain('<title>Test Reports</title>')
+    
+    // Check content
+    expect(html).toContain('Test Reports')
+    expect(html).toContain('test/repo')
+    expect(html).toContain('abc123')
+    expect(html).toContain('test-report.html')
+    expect(html).toContain('coverage.html')
+    
+    // Check links
+    expect(html).toContain('href="reports/test-report.html"')
+    expect(html).toContain('href="reports/coverage.html"')
+    
+    // Check stats
+    expect(html).toContain('2')
+    expect(html).toContain('HTML Reports Found')
+  })
+
+  it('should handle empty tree', () => {
+    const tree = {
+      name: 'empty',
+      path: './empty',
+      type: 'directory' as const,
+      children: []
+    }
+
+    const html = HtmlGenerator.generateIndex(tree)
+    
+    expect(html).toContain('<!DOCTYPE html>')
+    expect(html).toContain('Test Reports Index')
+    expect(html).toContain('0')
+    expect(html).toContain('HTML Reports Found')
+  })
+
+  it('should use default options when none provided', () => {
+    const tree = {
+      name: 'reports',
+      path: './reports',
+      type: 'directory' as const,
+      children: []
+    }
+
+    const html = HtmlGenerator.generateIndex(tree)
+    
+    expect(html).toContain('Test Reports Index')
+    expect(html).toContain('GitHub Pages Quick Index')
   })
 })
