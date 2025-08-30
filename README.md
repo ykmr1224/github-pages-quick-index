@@ -1,128 +1,88 @@
-# TypeScript GitHub Action
+# GitHub Pages Quick Index
 
-A template for creating GitHub Actions using TypeScript and Node.js.
+A minimal GitHub Action that generates a simple index.html to quickly access test reports generated in workflows.
 
-## Features
+## Overview
 
-- Written in TypeScript for type safety
-- Uses GitHub Actions toolkit (@actions/core, @actions/github)
-- Includes Jest testing framework
-- ESLint and Prettier for code quality
-- Automated build and packaging with @vercel/ncc
+This action scans for test reports and artifacts in your repository and creates a clean, minimal HTML index page for easy access via GitHub Pages.
 
-## Getting Started
+## Core Features
 
-### Prerequisites
+- **Auto-discovery**: Finds HTML reports in specified directories
+- **Minimal HTML generation**: Creates a simple, responsive index page
+- **Zero-config**: Works out of the box with sensible defaults
+- **GitHub Pages ready**: Outputs static files ready for deployment
 
-- Node.js 22 or later (LTS recommended)
-- npm or yarn
+## Requirements
 
-### Installation
+### Inputs
 
-1. Clone this repository
-2. Install dependencies:
+- `reports-path`: (optional) Directory to scan for reports (default: `./reports`)
+- `output-file`: (optional) Output HTML file path (default: `./index.html`)
 
+### Outputs
+
+- `index-path`: Path to the generated index.html file
+
+## Usage
+
+```yaml
+name: Generate Report Index
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Your test steps that generate reports
+      - name: Run Tests
+        run: npm test
+        
+      # Generate index
+      - uses: ykmr1224/github-pages-quick-index@v1
+        with:
+          reports-path: './reports'
+          
+      # Deploy to GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+```
+
+## Technical Scope
+
+### Core Functionality
+1. Scan directory for `.html` files
+2. Generate minimal HTML index with links
+3. Include basic metadata (timestamp, commit)
+4. Output single static HTML file
+
+### Implementation Requirements
+- Node.js 20+ runtime
+- Minimal dependencies
+- Fast execution (< 30 seconds)
+- Handle report files efficiently
+
+## Development
+
+### Setup
 ```bash
 npm install
-```
-
-### Development
-
-1. Make changes to the TypeScript source files in the `src/` directory
-2. Build the action:
-
-```bash
 npm run build
-```
-
-3. Package the action for distribution:
-
-```bash
-npm run package
-```
-
-4. Run tests:
-
-```bash
 npm test
 ```
 
 ### Project Structure
-
 ```
-├── src/
-│   └── index.ts          # Main action logic
-├── __tests__/
-│   └── index.test.ts     # Unit tests
-├── dist/                 # Compiled JavaScript (auto-generated)
-├── action.yml            # Action metadata
-├── package.json          # Node.js dependencies and scripts
-├── tsconfig.json         # TypeScript configuration
-├── jest.config.js        # Jest testing configuration
-└── README.md            # This file
+src/index.ts          # Main logic
+action.yml            # Action definition
+package.json          # Dependencies
 ```
 
-### Action Inputs and Outputs
+## License
 
-#### Inputs
-
-- `example-input`: (required) An example input parameter (default: "Hello World")
-
-#### Outputs
-
-- `example-output`: An example output parameter
-
-### Usage in Workflows
-
-```yaml
-name: Test Action
-on: [push]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./
-        id: my-action
-        with:
-          example-input: 'Custom input value'
-      - name: Use output
-        run: echo "Output was ${{ steps.my-action.outputs.example-output }}"
-```
-
-### Building and Packaging
-
-This action uses [@vercel/ncc](https://github.com/vercel/ncc) to compile the TypeScript code and package it into a single JavaScript file. This eliminates the need to check in `node_modules` to your repository.
-
-**Important**: Always run `npm run package` before committing changes to ensure the `dist/` directory is up to date.
-
-### Testing
-
-The project includes comprehensive unit tests using Jest. Tests are located in the `__tests__/` directory.
-
-Run tests with:
-
-```bash
-npm test
-```
-
-### Code Quality
-
-- **ESLint**: Linting for TypeScript code
-- **Prettier**: Code formatting
-- **TypeScript**: Static type checking
-
-### Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Run `npm run all` to build, test, and package
-6. Commit your changes
-7. Create a pull request
-
-### License
-
-This project is licensed under the Apache License 2.0 - see the LICENSE file for details.
+Apache License 2.0
