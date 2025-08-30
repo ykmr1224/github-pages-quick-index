@@ -1,0 +1,17 @@
+name: 'TypeScript GitHub Action'
+description: 'A GitHub Action written in TypeScript'
+author: 'Your Name'
+inputs:
+  example-input:
+    required: true
+    description: 'An example input parameter'
+    default: 'Hello World'
+outputs:
+  example-output:
+    description: 'An example output parameter'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'activity'
+  color: 'blue'

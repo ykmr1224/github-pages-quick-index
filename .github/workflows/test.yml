@@ -1,0 +1,43 @@
+name: 'Test GitHub Action'
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build and package
+        run: npm run all
+
+      - name: Test action
+        uses: ./
+        id: test-action
+        with:
+          example-input: 'Testing the action'
+
+      - name: Check output
+        run: |
+          echo "Action output: ${{ steps.test-action.outputs.example-output }}"
+          if [ -z "${{ steps.test-action.outputs.example-output }}" ]; then
+            echo "Error: No output received from action"
+            exit 1
+          fi
