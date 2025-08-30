@@ -82,9 +82,8 @@ export class HtmlGenerator {
         html += `<li class="file-item">
           <a href="${relativePath}" target="_blank">
             <span class="file-icon">📄</span>
-            <div>
-              <div>${fileName}</div>
-              <div class="file-path">${relativePath}</div>
+            <div class="file-info">
+              <div class="file-name">${fileName}</div>
             </div>
           </a>
         </li>`
