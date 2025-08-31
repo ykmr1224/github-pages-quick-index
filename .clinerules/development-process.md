@@ -54,20 +54,27 @@ npm run all
 
 ### Commit Message Format
 ```
-<type>: <description>
+<type>: <short description>
 
-✨ <feature details>
-🎨 <UI improvements>
-🔧 <technical changes>
+<optional longer description if needed>
 ```
 
+**Requirements:**
+- Keep messages short and concise
+- No emojis in commit messages
+- Use clear, descriptive language
+- Focus on what changed, not how
+
 **Types:**
-- `✨` New features
-- `🎨` UI improvements  
-- `🔧` Technical optimizations
-- `🐛` Bug fixes
-- `📝` Documentation
-- `🧪` Tests
+- `feat` New features
+- `fix` Bug fixes
+- `docs` Documentation changes
+- `style` Code style changes (formatting, missing semicolons, etc)
+- `refactor` Code refactoring (no functional changes)
+- `test` Adding or updating tests
+- `chore` Build process, tooling, dependencies
+- `perf` Performance improvements
+- `ci` CI/CD configuration changes
 
 ### File Organization Rules
 - Source code: `src/`
