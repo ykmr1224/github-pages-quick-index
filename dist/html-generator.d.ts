@@ -24,7 +24,7 @@ export declare class HtmlGenerator {
      */
     private static generateFileList;
     /**
-     * Organizes files by directory for better presentation, with shallower directories first
+     * Organizes files by directory for better presentation, sorted alphabetically
      */
     private static organizeByDirectory;
     /**

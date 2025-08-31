@@ -81,19 +81,17 @@ class HtmlGenerator {
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
-            text-align: center;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
         
         .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .header .subtitle {
-            opacity: 0.9;
-            font-size: 1.1rem;
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: 400;
         }
         
         .metadata {
@@ -102,14 +100,82 @@ class HtmlGenerator {
             border-bottom: 1px solid #e9ecef;
             font-size: 0.9rem;
             color: #6c757d;
+            text-align: center;
         }
         
         .metadata span {
             margin-right: 20px;
         }
         
+        .metadata span:last-child {
+            margin-right: 0;
+        }
+        
         .content {
             padding: 30px;
+        }
+        
+        .search-container {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-width: 300px;
+            max-width: 400px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            padding-right: 35px;
+            font-size: 0.9rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background: white;
+            transition: border-color 0.15s ease;
+            font-family: inherit;
+        }
+        
+        .search-clear-btn {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #6c757d;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 3px;
+            transition: all 0.15s ease;
+            display: none;
+        }
+        
+        .search-clear-btn:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .search-clear-btn.visible {
+            display: block;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+        
+        .search-info {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #6c757d;
         }
         
         .file-tree {
@@ -117,6 +183,14 @@ class HtmlGenerator {
             border-radius: 6px;
             padding: 20px;
             margin-bottom: 30px;
+        }
+        
+        .file-item.hidden {
+            display: none;
+        }
+        
+        .directory-section.hidden {
+            display: none;
         }
         
         .file-list {
@@ -210,12 +284,24 @@ class HtmlGenerator {
                 padding: 10px;
             }
             
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+                text-align: center;
+            }
+            
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
             .content {
                 padding: 20px;
+            }
+            
+            .search-input-wrapper {
+                min-width: auto;
+                max-width: none;
             }
         }
     </style>
@@ -224,10 +310,15 @@ class HtmlGenerator {
     <div class="container">
         <div class="header">
             <h1>📊 {{title}}</h1>
-            <div class="subtitle">Quick access to test reports and documentation</div>
+            <div class="search-input-wrapper">
+                <input type="text" id="searchInput" placeholder="Filter files by path..." class="search-input">
+                <button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search (ESC)">×</button>
+            </div>
         </div>
         
-        {{metadata}}
+        <div class="metadata">
+            {{metadata}}
+        </div>
         
         <div class="content">
             {{fileList}}
@@ -244,6 +335,86 @@ class HtmlGenerator {
             • {{generatedTime}}
         </div>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchClearBtn = document.getElementById('searchClearBtn');
+            const fileItems = document.querySelectorAll('.file-item');
+            const directorySections = document.querySelectorAll('.directory-section');
+            
+            function filterFiles() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                
+                // Show/hide clear button based on input content
+                if (searchTerm === '') {
+                    searchClearBtn.classList.remove('visible');
+                } else {
+                    searchClearBtn.classList.add('visible');
+                }
+                
+                // Show/hide individual file items
+                fileItems.forEach(function(item) {
+                    const filePath = item.getAttribute('data-path').toLowerCase();
+                    const isVisible = searchTerm === '' || filePath.includes(searchTerm);
+                    
+                    if (isVisible) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                // Show/hide directory sections based on whether they have visible files
+                directorySections.forEach(function(section) {
+                    const visibleFilesInSection = section.querySelectorAll('.file-item:not(.hidden)');
+                    if (visibleFilesInSection.length > 0) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+                
+                // Handle root level files (not in directory sections)
+                const rootFileList = document.querySelector('.file-list');
+                if (rootFileList && !rootFileList.closest('.directory-section')) {
+                    const visibleRootFiles = rootFileList.querySelectorAll('.file-item:not(.hidden)');
+                    if (visibleRootFiles.length === 0 && searchTerm !== '') {
+                        rootFileList.style.display = 'none';
+                    } else {
+                        rootFileList.style.display = '';
+                    }
+                }
+            }
+            
+            function clearSearch() {
+                searchInput.value = '';
+                filterFiles();
+                searchInput.focus();
+            }
+            
+            // Add event listener for real-time filtering
+            searchInput.addEventListener('input', filterFiles);
+            
+            // Add clear button click handler
+            searchClearBtn.addEventListener('click', clearSearch);
+            
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl/Cmd + K to focus search
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    searchInput.focus();
+                    searchInput.select();
+                }
+                // ESC to clear search (only when search input is focused)
+                else if (e.key === 'Escape' && document.activeElement === searchInput) {
+                    e.preventDefault();
+                    clearSearch();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 `;
@@ -288,7 +459,7 @@ class HtmlGenerator {
             for (const file of files) {
                 const relativePath = this.getRelativePath(file.path);
                 const fileName = path.basename(file.path);
-                html += `<li class="file-item">
+                html += `<li class="file-item" data-path="${relativePath}">
           <a href="${relativePath}" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
@@ -305,7 +476,7 @@ class HtmlGenerator {
         return html;
     }
     /**
-     * Organizes files by directory for better presentation, with shallower directories first
+     * Organizes files by directory for better presentation, sorted alphabetically
      */
     static organizeByDirectory(tree) {
         const sections = new Map();
@@ -337,16 +508,14 @@ class HtmlGenerator {
                 collectFiles(child);
             }
         }
-        // Sort sections by directory depth (shallower first)
+        // Sort sections alphabetically (dictionary order)
         const sortedSections = new Map();
         const sortedKeys = Array.from(sections.keys()).sort((a, b) => {
-            const depthA = a === 'root' ? 0 : a.split('/').length;
-            const depthB = b === 'root' ? 0 : b.split('/').length;
-            // First sort by depth (shallower first)
-            if (depthA !== depthB) {
-                return depthA - depthB;
-            }
-            // Then sort alphabetically within same depth
+            // Sort alphabetically, with 'root' always first
+            if (a === 'root')
+                return -1;
+            if (b === 'root')
+                return 1;
             return a.localeCompare(b);
         });
         for (const key of sortedKeys) {

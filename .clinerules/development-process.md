@@ -29,6 +29,19 @@ npm run all
 - Required before major commits
 - Ensures distribution files are up to date
 
+### 4. Always Ask Before Pushing Changes
+- **MANDATORY**: Always ask user permission before running `git push`
+- Use `requires_approval: true` for all git push commands
+- This applies to ALL push operations, no exceptions
+- User must explicitly approve each push to remote repository
+
+### 5. Update Documentation When Behavior Changes Are Requested
+- **MANDATORY**: When user requests behavioral changes, update this documentation
+- Add new requirements to appropriate sections in this file
+- Document the specific behavioral change and its rationale
+- Ensure future development follows the updated process
+- This applies to ALL behavioral change requests, no exceptions
+
 ## Development Standards
 
 ### Code Quality Checklist
