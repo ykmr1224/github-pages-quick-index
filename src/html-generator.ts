@@ -59,19 +59,17 @@ export class HtmlGenerator {
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
-            text-align: center;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
         
         .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-        
-        .header .subtitle {
-            opacity: 0.9;
-            font-size: 1.1rem;
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: 400;
         }
         
         .metadata {
@@ -80,20 +78,14 @@ export class HtmlGenerator {
             border-bottom: 1px solid #e9ecef;
             font-size: 0.9rem;
             color: #6c757d;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-        
-        .metadata-info {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            text-align: center;
         }
         
         .metadata span {
+            margin-right: 20px;
+        }
+        
+        .metadata span:last-child {
             margin-right: 0;
         }
         
@@ -270,22 +262,19 @@ export class HtmlGenerator {
                 padding: 10px;
             }
             
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+                text-align: center;
+            }
+            
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
             .content {
                 padding: 20px;
-            }
-            
-            .metadata {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 15px;
-            }
-            
-            .metadata-info {
-                justify-content: center;
             }
             
             .search-input-wrapper {
@@ -299,17 +288,14 @@ export class HtmlGenerator {
     <div class="container">
         <div class="header">
             <h1>📊 {{title}}</h1>
-            <div class="subtitle">Quick access to test reports and documentation</div>
-        </div>
-        
-        <div class="metadata">
-            <div class="metadata-info">
-                {{metadata}}
-            </div>
             <div class="search-input-wrapper">
                 <input type="text" id="searchInput" placeholder="Filter files by path..." class="search-input">
                 <button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search (ESC)">×</button>
             </div>
+        </div>
+        
+        <div class="metadata">
+            {{metadata}}
         </div>
         
         <div class="content">
