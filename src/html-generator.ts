@@ -98,15 +98,45 @@ export class HtmlGenerator {
             border: 1px solid #e9ecef;
         }
         
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
         .search-input {
             width: 100%;
-            padding: 12px 16px;
+            padding: 12px 16px 12px 16px;
+            padding-right: 45px;
             font-size: 1rem;
             border: 2px solid #dee2e6;
             border-radius: 6px;
             background: white;
             transition: border-color 0.15s ease;
             font-family: inherit;
+        }
+        
+        .search-clear-btn {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #6c757d;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 3px;
+            transition: all 0.15s ease;
+            display: none;
+        }
+        
+        .search-clear-btn:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .search-clear-btn.visible {
+            display: block;
         }
         
         .search-input:focus {
@@ -248,7 +278,10 @@ export class HtmlGenerator {
         
         <div class="content">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Filter files by path..." class="search-input">
+                <div class="search-input-wrapper">
+                    <input type="text" id="searchInput" placeholder="Filter files by path..." class="search-input">
+                    <button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search (ESC)">×</button>
+                </div>
                 <div class="search-info">
                     <span id="searchResults"></span>
                 </div>
@@ -271,6 +304,7 @@ export class HtmlGenerator {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('searchInput');
+            const searchClearBtn = document.getElementById('searchClearBtn');
             const searchResults = document.getElementById('searchResults');
             const fileItems = document.querySelectorAll('.file-item');
             const directorySections = document.querySelectorAll('.directory-section');
@@ -287,6 +321,13 @@ export class HtmlGenerator {
             function filterFiles() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
                 let visibleCount = 0;
+                
+                // Show/hide clear button based on input content
+                if (searchTerm === '') {
+                    searchClearBtn.classList.remove('visible');
+                } else {
+                    searchClearBtn.classList.add('visible');
+                }
                 
                 // Show/hide individual file items
                 fileItems.forEach(function(item) {
@@ -325,18 +366,33 @@ export class HtmlGenerator {
                 updateSearchResults(visibleCount);
             }
             
+            function clearSearch() {
+                searchInput.value = '';
+                filterFiles();
+                searchInput.focus();
+            }
+            
             // Initialize search results display
             updateSearchResults(totalFiles);
             
             // Add event listener for real-time filtering
             searchInput.addEventListener('input', filterFiles);
             
-            // Add keyboard shortcut (Ctrl/Cmd + K) to focus search
+            // Add clear button click handler
+            searchClearBtn.addEventListener('click', clearSearch);
+            
+            // Add keyboard shortcuts
             document.addEventListener('keydown', function(e) {
+                // Ctrl/Cmd + K to focus search
                 if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                     e.preventDefault();
                     searchInput.focus();
                     searchInput.select();
+                }
+                // ESC to clear search (only when search input is focused)
+                else if (e.key === 'Escape' && document.activeElement === searchInput) {
+                    e.preventDefault();
+                    clearSearch();
                 }
             });
         });
