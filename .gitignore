@@ -117,3 +117,6 @@ coverage/
 
 # Build artifacts and test reports
 build/
+
+# Generated template files
+src/compiled-templates/
