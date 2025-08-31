@@ -80,10 +80,21 @@ export class HtmlGenerator {
             border-bottom: 1px solid #e9ecef;
             font-size: 0.9rem;
             color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .metadata-info {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         
         .metadata span {
-            margin-right: 20px;
+            margin-right: 0;
         }
         
         .content {
@@ -102,15 +113,17 @@ export class HtmlGenerator {
             position: relative;
             display: flex;
             align-items: center;
+            min-width: 300px;
+            max-width: 400px;
         }
         
         .search-input {
             width: 100%;
-            padding: 12px 16px 12px 16px;
-            padding-right: 45px;
-            font-size: 1rem;
-            border: 2px solid #dee2e6;
-            border-radius: 6px;
+            padding: 8px 12px;
+            padding-right: 35px;
+            font-size: 0.9rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
             background: white;
             transition: border-color 0.15s ease;
             font-family: inherit;
@@ -264,6 +277,21 @@ export class HtmlGenerator {
             .content {
                 padding: 20px;
             }
+            
+            .metadata {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            
+            .metadata-info {
+                justify-content: center;
+            }
+            
+            .search-input-wrapper {
+                min-width: auto;
+                max-width: none;
+            }
         }
     </style>
 </head>
@@ -274,18 +302,17 @@ export class HtmlGenerator {
             <div class="subtitle">Quick access to test reports and documentation</div>
         </div>
         
-        {{metadata}}
+        <div class="metadata">
+            <div class="metadata-info">
+                {{metadata}}
+            </div>
+            <div class="search-input-wrapper">
+                <input type="text" id="searchInput" placeholder="Filter files by path..." class="search-input">
+                <button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search (ESC)">×</button>
+            </div>
+        </div>
         
         <div class="content">
-            <div class="search-container">
-                <div class="search-input-wrapper">
-                    <input type="text" id="searchInput" placeholder="Filter files by path..." class="search-input">
-                    <button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search (ESC)">×</button>
-                </div>
-                <div class="search-info">
-                    <span id="searchResults"></span>
-                </div>
-            </div>
             {{fileList}}
         </div>
         
@@ -305,22 +332,11 @@ export class HtmlGenerator {
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('searchInput');
             const searchClearBtn = document.getElementById('searchClearBtn');
-            const searchResults = document.getElementById('searchResults');
             const fileItems = document.querySelectorAll('.file-item');
             const directorySections = document.querySelectorAll('.directory-section');
-            const totalFiles = fileItems.length;
-            
-            function updateSearchResults(visibleCount) {
-                if (searchInput.value.trim() === '') {
-                    searchResults.textContent = 'Showing all ' + totalFiles + ' files';
-                } else {
-                    searchResults.textContent = 'Showing ' + visibleCount + ' of ' + totalFiles + ' files';
-                }
-            }
             
             function filterFiles() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
-                let visibleCount = 0;
                 
                 // Show/hide clear button based on input content
                 if (searchTerm === '') {
@@ -336,7 +352,6 @@ export class HtmlGenerator {
                     
                     if (isVisible) {
                         item.classList.remove('hidden');
-                        visibleCount++;
                     } else {
                         item.classList.add('hidden');
                     }
@@ -362,8 +377,6 @@ export class HtmlGenerator {
                         rootFileList.style.display = '';
                     }
                 }
-                
-                updateSearchResults(visibleCount);
             }
             
             function clearSearch() {
@@ -371,9 +384,6 @@ export class HtmlGenerator {
                 filterFiles();
                 searchInput.focus();
             }
-            
-            // Initialize search results display
-            updateSearchResults(totalFiles);
             
             // Add event listener for real-time filtering
             searchInput.addEventListener('input', filterFiles);
