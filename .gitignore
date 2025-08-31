@@ -115,5 +115,5 @@ Thumbs.db
 # Jest coverage
 coverage/
 
-# Generated test reports
-reports/
+# Build artifacts and test reports
+build/

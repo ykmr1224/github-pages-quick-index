@@ -10,14 +10,14 @@ module.exports = {
     'src/**/*.ts',
     '!src/**/*.d.ts'
   ],
-  coverageDirectory: 'reports/coverage',
+  coverageDirectory: 'build/coverage',
   coverageReporters: ['text', 'lcov', 'html'],
   reporters: [
     'default',
     [
       'jest-html-reporters',
       {
-        publicPath: './reports',
+        publicPath: './build/jest',
         filename: 'test-report.html',
         expand: true,
         hideIcon: false,
