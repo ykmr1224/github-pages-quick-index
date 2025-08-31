@@ -18,11 +18,7 @@ module.exports = {
       'jest-html-reporters',
       {
         publicPath: './build/jest',
-        filename: 'test-report.html',
         expand: true,
-        hideIcon: false,
-        pageTitle: 'GitHub Pages Quick Index - Test Report',
-        logoImgPath: undefined,
         includeFailureMsg: true,
         includeSuiteFailure: true
       }
