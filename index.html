@@ -62,11 +62,50 @@
             padding: 30px;
         }
         
+        .search-container {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            background: white;
+            transition: border-color 0.15s ease;
+            font-family: inherit;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+        
+        .search-info {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
         .file-tree {
             background: #f8f9fa;
             border-radius: 6px;
             padding: 20px;
             margin-bottom: 30px;
+        }
+        
+        .file-item.hidden {
+            display: none;
+        }
+        
+        .directory-section.hidden {
+            display: none;
         }
         
         .file-list {
@@ -177,40 +216,46 @@
             <div class="subtitle">Quick access to test reports and documentation</div>
         </div>
         
-        <div class="metadata"><span>📁 Repository: <strong>ykmr1224/github-pages-quick-index</strong></span><span>🔗 Commit: <strong>a7b0e68</strong></span><span>🕒 Generated: <strong>8/31/2025, 12:26:44 AM</strong></span></div>
+        <div class="metadata"><span>📁 Repository: <strong>ykmr1224/github-pages-quick-index</strong></span><span>🔗 Commit: <strong>a785796</strong></span><span>🕒 Generated: <strong>8/31/2025, 12:40:07 AM</strong></span></div>
         
         <div class="content">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Filter files by path..." class="search-input">
+                <div class="search-info">
+                    <span id="searchResults"></span>
+                </div>
+            </div>
             <div class="directory-section">
           <div class="directory-title">📁 coverage</div>
-          <ul class="file-list"><li class="file-item">
+          <ul class="file-list"><li class="file-item" data-path="build/coverage/file-crawler.ts.html">
           <a href="build/coverage/file-crawler.ts.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
               <div class="file-name">file-crawler.ts.html</div>
             </div>
           </a>
-        </li><li class="file-item">
+        </li><li class="file-item" data-path="build/coverage/html-generator.ts.html">
           <a href="build/coverage/html-generator.ts.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
               <div class="file-name">html-generator.ts.html</div>
             </div>
           </a>
-        </li><li class="file-item">
+        </li><li class="file-item" data-path="build/coverage/index.html">
           <a href="build/coverage/index.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
               <div class="file-name">index.html</div>
             </div>
           </a>
-        </li><li class="file-item">
+        </li><li class="file-item" data-path="build/coverage/index.ts.html">
           <a href="build/coverage/index.ts.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
               <div class="file-name">index.ts.html</div>
             </div>
           </a>
-        </li><li class="file-item">
+        </li><li class="file-item" data-path="build/coverage/tree-formatter.ts.html">
           <a href="build/coverage/tree-formatter.ts.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
@@ -219,35 +264,35 @@
           </a>
         </li></ul></div><div class="directory-section">
           <div class="directory-title">📁 coverage/lcov-report</div>
-          <ul class="file-list"><li class="file-item">
+          <ul class="file-list"><li class="file-item" data-path="build/coverage/lcov-report/file-crawler.ts.html">
           <a href="build/coverage/lcov-report/file-crawler.ts.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
               <div class="file-name">file-crawler.ts.html</div>
             </div>
           </a>
-        </li><li class="file-item">
+        </li><li class="file-item" data-path="build/coverage/lcov-report/html-generator.ts.html">
           <a href="build/coverage/lcov-report/html-generator.ts.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
               <div class="file-name">html-generator.ts.html</div>
             </div>
           </a>
-        </li><li class="file-item">
+        </li><li class="file-item" data-path="build/coverage/lcov-report/index.html">
           <a href="build/coverage/lcov-report/index.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
               <div class="file-name">index.html</div>
             </div>
           </a>
-        </li><li class="file-item">
+        </li><li class="file-item" data-path="build/coverage/lcov-report/index.ts.html">
           <a href="build/coverage/lcov-report/index.ts.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
               <div class="file-name">index.ts.html</div>
             </div>
           </a>
-        </li><li class="file-item">
+        </li><li class="file-item" data-path="build/coverage/lcov-report/tree-formatter.ts.html">
           <a href="build/coverage/lcov-report/tree-formatter.ts.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
@@ -256,7 +301,7 @@
           </a>
         </li></ul></div><div class="directory-section">
           <div class="directory-title">📁 jest</div>
-          <ul class="file-list"><li class="file-item">
+          <ul class="file-list"><li class="file-item" data-path="build/jest/jest_html_reporters.html">
           <a href="build/jest/jest_html_reporters.html" target="_blank">
             <span class="file-icon">📄</span>
             <div class="file-info">
@@ -274,8 +319,82 @@
                 </svg>
                 GitHub
             </a>
-            • 8/31/2025, 12:26:44 AM
+            • 8/31/2025, 12:40:07 AM
         </div>
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const fileItems = document.querySelectorAll('.file-item');
+            const directorySections = document.querySelectorAll('.directory-section');
+            const totalFiles = fileItems.length;
+            
+            function updateSearchResults(visibleCount) {
+                if (searchInput.value.trim() === '') {
+                    searchResults.textContent = 'Showing all ' + totalFiles + ' files';
+                } else {
+                    searchResults.textContent = 'Showing ' + visibleCount + ' of ' + totalFiles + ' files';
+                }
+            }
+            
+            function filterFiles() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                let visibleCount = 0;
+                
+                // Show/hide individual file items
+                fileItems.forEach(function(item) {
+                    const filePath = item.getAttribute('data-path').toLowerCase();
+                    const isVisible = searchTerm === '' || filePath.includes(searchTerm);
+                    
+                    if (isVisible) {
+                        item.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                // Show/hide directory sections based on whether they have visible files
+                directorySections.forEach(function(section) {
+                    const visibleFilesInSection = section.querySelectorAll('.file-item:not(.hidden)');
+                    if (visibleFilesInSection.length > 0) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+                
+                // Handle root level files (not in directory sections)
+                const rootFileList = document.querySelector('.file-list');
+                if (rootFileList && !rootFileList.closest('.directory-section')) {
+                    const visibleRootFiles = rootFileList.querySelectorAll('.file-item:not(.hidden)');
+                    if (visibleRootFiles.length === 0 && searchTerm !== '') {
+                        rootFileList.style.display = 'none';
+                    } else {
+                        rootFileList.style.display = '';
+                    }
+                }
+                
+                updateSearchResults(visibleCount);
+            }
+            
+            // Initialize search results display
+            updateSearchResults(totalFiles);
+            
+            // Add event listener for real-time filtering
+            searchInput.addEventListener('input', filterFiles);
+            
+            // Add keyboard shortcut (Ctrl/Cmd + K) to focus search
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    searchInput.focus();
+                    searchInput.select();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
