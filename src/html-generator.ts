@@ -297,7 +297,7 @@ export class HtmlGenerator {
   }
 
   /**
-   * Organizes files by directory for better presentation, with shallower directories first
+   * Organizes files by directory for better presentation, sorted alphabetically
    */
   private static organizeByDirectory(tree: TreeNode): Map<string, TreeNode[]> {
     const sections = new Map<string, TreeNode[]>()
@@ -330,18 +330,12 @@ export class HtmlGenerator {
       }
     }
 
-    // Sort sections by directory depth (shallower first)
+    // Sort sections alphabetically (dictionary order)
     const sortedSections = new Map<string, TreeNode[]>()
     const sortedKeys = Array.from(sections.keys()).sort((a, b) => {
-      const depthA = a === 'root' ? 0 : a.split('/').length
-      const depthB = b === 'root' ? 0 : b.split('/').length
-      
-      // First sort by depth (shallower first)
-      if (depthA !== depthB) {
-        return depthA - depthB
-      }
-      
-      // Then sort alphabetically within same depth
+      // Sort alphabetically, with 'root' always first
+      if (a === 'root') return -1
+      if (b === 'root') return 1
       return a.localeCompare(b)
     })
     
