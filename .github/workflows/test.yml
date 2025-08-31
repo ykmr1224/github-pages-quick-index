@@ -27,11 +27,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build project
+        run: npm run build
+
       - name: Run tests with coverage
         run: npm test -- --coverage
 
-      - name: Build and package
-        run: npm run all
+      - name: Package for distribution
+        run: npm run package
 
       - name: Test action with real reports
         uses: ./
