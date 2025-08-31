@@ -614,7 +614,17 @@
 <a name='L549'></a><a href='#L549'>549</a>
 <a name='L550'></a><a href='#L550'>550</a>
 <a name='L551'></a><a href='#L551'>551</a>
-<a name='L552'></a><a href='#L552'>552</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L552'></a><a href='#L552'>552</a>
+<a name='L553'></a><a href='#L553'>553</a>
+<a name='L554'></a><a href='#L554'>554</a>
+<a name='L555'></a><a href='#L555'>555</a>
+<a name='L556'></a><a href='#L556'>556</a>
+<a name='L557'></a><a href='#L557'>557</a>
+<a name='L558'></a><a href='#L558'>558</a>
+<a name='L559'></a><a href='#L559'>559</a>
+<a name='L560'></a><a href='#L560'>560</a>
+<a name='L561'></a><a href='#L561'>561</a>
+<a name='L562'></a><a href='#L562'>562</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -643,6 +653,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1247,10 +1267,21 @@ export class HtmlGenerator {
             border-bottom: 1px solid #e9ecef;
             font-size: 0.9rem;
             color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .metadata-info {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         
         .metadata span {
-            margin-right: 20px;
+            margin-right: 0;
         }
         
         .content {
@@ -1269,15 +1300,17 @@ export class HtmlGenerator {
             position: relative;
             display: flex;
             align-items: center;
+            min-width: 300px;
+            max-width: 400px;
         }
         
         .search-input {
             width: 100%;
-            padding: 12px 16px 12px 16px;
-            padding-right: 45px;
-            font-size: 1rem;
-            border: 2px solid #dee2e6;
-            border-radius: 6px;
+            padding: 8px 12px;
+            padding-right: 35px;
+            font-size: 0.9rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
             background: white;
             transition: border-color 0.15s ease;
             font-family: inherit;
@@ -1431,6 +1464,21 @@ export class HtmlGenerator {
             .content {
                 padding: 20px;
             }
+            
+            .metadata {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            
+            .metadata-info {
+                justify-content: center;
+            }
+            
+            .search-input-wrapper {
+                min-width: auto;
+                max-width: none;
+            }
         }
     &lt;/style&gt;
 &lt;/head&gt;
@@ -1441,18 +1489,17 @@ export class HtmlGenerator {
             &lt;div class="subtitle"&gt;Quick access to test reports and documentation&lt;/div&gt;
         &lt;/div&gt;
         
-        {{metadata}}
+        &lt;div class="metadata"&gt;
+            &lt;div class="metadata-info"&gt;
+                {{metadata}}
+            &lt;/div&gt;
+            &lt;div class="search-input-wrapper"&gt;
+                &lt;input type="text" id="searchInput" placeholder="Filter files by path..." class="search-input"&gt;
+                &lt;button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search (ESC)"&gt;×&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
         
         &lt;div class="content"&gt;
-            &lt;div class="search-container"&gt;
-                &lt;div class="search-input-wrapper"&gt;
-                    &lt;input type="text" id="searchInput" placeholder="Filter files by path..." class="search-input"&gt;
-                    &lt;button type="button" id="searchClearBtn" class="search-clear-btn" title="Clear search (ESC)"&gt;×&lt;/button&gt;
-                &lt;/div&gt;
-                &lt;div class="search-info"&gt;
-                    &lt;span id="searchResults"&gt;&lt;/span&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
             {{fileList}}
         &lt;/div&gt;
         
@@ -1472,22 +1519,11 @@ export class HtmlGenerator {
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('searchInput');
             const searchClearBtn = document.getElementById('searchClearBtn');
-            const searchResults = document.getElementById('searchResults');
             const fileItems = document.querySelectorAll('.file-item');
             const directorySections = document.querySelectorAll('.directory-section');
-            const totalFiles = fileItems.length;
-            
-            function updateSearchResults(visibleCount) {
-                if (searchInput.value.trim() === '') {
-                    searchResults.textContent = 'Showing all ' + totalFiles + ' files';
-                } else {
-                    searchResults.textContent = 'Showing ' + visibleCount + ' of ' + totalFiles + ' files';
-                }
-            }
             
             function filterFiles() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
-                let visibleCount = 0;
                 
                 // Show/hide clear button based on input content
                 if (searchTerm === '') {
@@ -1503,7 +1539,6 @@ export class HtmlGenerator {
                     
                     if (isVisible) {
                         item.classList.remove('hidden');
-                        visibleCount++;
                     } else {
                         item.classList.add('hidden');
                     }
@@ -1529,8 +1564,6 @@ export class HtmlGenerator {
                         rootFileList.style.display = '';
                     }
                 }
-                
-                updateSearchResults(visibleCount);
             }
             
             function clearSearch() {
@@ -1538,9 +1571,6 @@ export class HtmlGenerator {
                 filterFiles();
                 searchInput.focus();
             }
-            
-            // Initialize search results display
-            updateSearchResults(totalFiles);
             
             // Add event listener for real-time filtering
             searchInput.addEventListener('input', filterFiles);
@@ -1723,7 +1753,7 @@ export class HtmlGenerator {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-31T00:46:45.745Z
+                at 2025-08-31T00:52:42.584Z
             </div>
         <script src="prettify.js"></script>
         <script>
