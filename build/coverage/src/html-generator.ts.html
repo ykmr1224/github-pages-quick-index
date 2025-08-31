@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for file-crawler.ts</title>
+    <title>Code coverage report for src/html-generator.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="prettify.css" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> file-crawler.ts</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> html-generator.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.68% </span>
+                <span class="strong">93.93% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>41/58</span>
+                <span class='fraction'>62/66</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52.63% </span>
+                <span class="strong">77.41% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/19</span>
+                <span class='fraction'>24/31</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.17% </span>
+                <span class="strong">96.87% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>40/57</span>
+                <span class='fraction'>62/64</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -231,340 +231,367 @@
 <a name='L166'></a><a href='#L166'>166</a>
 <a name='L167'></a><a href='#L167'>167</a>
 <a name='L168'></a><a href='#L168'>168</a>
-<a name='L169'></a><a href='#L169'>169</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as core from '@actions/core'
-import * as fs from 'fs'
-import * as path from 'path'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as path from 'path'
 import { TreeNode } from './types'
+import { indexTemplate } from './compiled-templates'
 &nbsp;
 /**
- * File crawler class for finding HTML files and building tree structure
+ * HTML generator class for creating index pages from tree structures
  */
-export class FileCrawler {
-  private htmlFiles: string[] = []
-  private filterRegex: RegExp = /.*/  // Default matches everything
-  
+export class HtmlGenerator {
   /**
-   * Creates a new FileCrawler instance
-   * @param fileFilter Optional regex pattern to filter files
+   * Generates a minimal HTML index page from the tree structure
+   * @param tree The tree structure of HTML files
+   * @param options Generation options
+   * @returns HTML string content
    */
-  constructor(fileFilter?: string) {
-    if (fileFilter &amp;&amp; fileFilter.trim() !== '') {
-      try {
-        this.filterRegex = new RegExp(fileFilter)
-      } catch (error) {
-        core.warning(`Invalid regex pattern "${fileFilter}": ${error}`)
-        this.filterRegex = /.*/ // If regex is invalid, include all files
-      }
+  static generateIndex(tree: TreeNode, options: {
+    title?: string
+    repositoryName?: string
+    commitSha?: string
+    timestamp?: string
+  } = {}): string {
+    const {
+      title = 'Test Reports Index',
+      repositoryName = '',
+      commitSha = '',
+      timestamp = new Date().toISOString()
+    } = options
+&nbsp;
+    // Use precompiled template
+    const templateData = {
+      title,
+      metadata: this.generateMetadata(repositoryName, commitSha, timestamp),
+      fileList: this.generateFileList(tree),
+      fileCount: this.countFiles(tree).toString(),
+      generatedTime: new Date(timestamp).toLocaleString()
     }
-  }
-  
-  /**
-   * Crawls a directory recursively to find HTML files
-   * @param dirPath The directory path to crawl
-   * @returns Array of HTML file paths
-   */
-<span class="fstat-no" title="function not covered" >  async </span>crawlDirectory(dirPath: string): Promise&lt;string[]&gt; {
-<span class="cstat-no" title="statement not covered" >    this.htmlFiles = []</span>
-<span class="cstat-no" title="statement not covered" >    await this.crawlRecursive(dirPath)</span>
-<span class="cstat-no" title="statement not covered" >    return this.htmlFiles</span>
+&nbsp;
+    return indexTemplate(templateData)
   }
 &nbsp;
   /**
-   * Recursively crawls directories to find HTML files
-   * @param currentPath Current directory path being crawled
+   * Generates metadata section HTML
    */
-  private <span class="fstat-no" title="function not covered" >async </span>crawlRecursive(currentPath: string): Promise&lt;void&gt; {
-<span class="cstat-no" title="statement not covered" >    try {</span>
-      const stats = <span class="cstat-no" title="statement not covered" >await fs.promises.stat(currentPath)</span>
-      
-<span class="cstat-no" title="statement not covered" >      if (stats.isDirectory()) {</span>
-        const entries = <span class="cstat-no" title="statement not covered" >await fs.promises.readdir(currentPath)</span>
+  private static generateMetadata(repositoryName: string, commitSha: string, timestamp: string): string {
+    const items = []
+    
+    if (repositoryName) {
+      items.push(`&lt;span&gt;📁 Repository: &lt;strong&gt;${repositoryName}&lt;/strong&gt;&lt;/span&gt;`)
+    }
+    
+    if (commitSha) {
+      const shortSha = commitSha.substring(0, 7)
+      items.push(`&lt;span&gt;🔗 Commit: &lt;strong&gt;${shortSha}&lt;/strong&gt;&lt;/span&gt;`)
+    }
+    
+    items.push(`&lt;span&gt;🕒 Generated: &lt;strong&gt;${new Date(timestamp).toLocaleString()}&lt;/strong&gt;&lt;/span&gt;`)
+    
+    return items.join('')
+  }
+&nbsp;
+  /**
+   * Generates the file list HTML from tree structure
+   */
+  private static generateFileList(tree: TreeNode): string {
+    const sections = this.organizeByDirectory(tree)
+    let html = ''
+&nbsp;
+    for (const [dirName, files] of sections) {
+      if (dirName !== 'root') {
+        html += `&lt;div class="directory-section"&gt;
+          &lt;div class="directory-title"&gt;📁 ${dirName}&lt;/div&gt;
+          &lt;ul class="file-list"&gt;`
+      } else {
+        html += `&lt;ul class="file-list"&gt;`
+      }
+&nbsp;
+      for (const file of files) {
+        const relativePath = this.getRelativePath(file.path)
+        const fileName = path.basename(file.path)
         
-<span class="cstat-no" title="statement not covered" >        for (const entry of entries) {</span>
-          const fullPath = <span class="cstat-no" title="statement not covered" >path.join(currentPath, entry)</span>
-<span class="cstat-no" title="statement not covered" >          await this.crawlRecursive(fullPath)</span>
+        html += `&lt;li class="file-item" data-path="${relativePath}"&gt;
+          &lt;a href="${relativePath}" target="_blank"&gt;
+            &lt;span class="file-icon"&gt;📄&lt;/span&gt;
+            &lt;div class="file-info"&gt;
+              &lt;div class="file-name"&gt;${fileName}&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/a&gt;
+        &lt;/li&gt;`
+      }
+&nbsp;
+      html += `&lt;/ul&gt;`
+      
+      if (dirName !== 'root') {
+        html += `&lt;/div&gt;`
+      }
+    }
+&nbsp;
+    return html
+  }
+&nbsp;
+  /**
+   * Organizes files by directory for better presentation, sorted alphabetically
+   */
+  private static organizeByDirectory(tree: TreeNode): Map&lt;string, TreeNode[]&gt; {
+    const sections = new Map&lt;string, TreeNode[]&gt;()
+    
+    const collectFiles = (node: TreeNode, currentDir: string = 'root', depth: number = 0) =&gt; {
+      if (node.type === 'file') {
+        if (!sections.has(currentDir)) {
+          sections.set(currentDir, [])
         }
-      } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (stats.isFile() &amp;&amp; this.isHtmlFile(currentPath) &amp;&amp; this.matchesFilter(currentPath)) {</span>
-<span class="cstat-no" title="statement not covered" >        this.htmlFiles.push(currentPath)</span>
-      }
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >      core.warning(`Error accessing path ${currentPath}: ${error}`)</span>
-    }
-  }
-&nbsp;
-  /**
-   * Checks if a file is an HTML file based on its extension
-   * @param filePath The file path to check
-   * @returns True if the file is an HTML file
-   */
-  private <span class="fstat-no" title="function not covered" >isHtmlFile(</span>filePath: string): boolean {
-    const ext = <span class="cstat-no" title="statement not covered" >path.extname(filePath).toLowerCase()</span>
-<span class="cstat-no" title="statement not covered" >    return ext === '.html' || ext === '.htm'</span>
-  }
-&nbsp;
-  /**
-   * Checks if a file matches the compiled regex filter
-   * @param filePath The file path to check
-   * @returns True if the file matches the filter
-   */
-  private <span class="fstat-no" title="function not covered" >matchesFilter(</span>filePath: string): boolean {
-    const fileName = <span class="cstat-no" title="statement not covered" >path.basename(filePath)</span>
-<span class="cstat-no" title="statement not covered" >    return this.filterRegex.test(fileName)</span>
-  }
-&nbsp;
-  /**
-   * Builds a tree structure from the found HTML files
-   * @param htmlFiles Array of HTML file paths
-   * @param rootPath The root directory path
-   * @returns Tree structure representing the HTML files
-   */
-  buildTreeStructure(htmlFiles: string[], rootPath: string): TreeNode {
-    const root: TreeNode = {
-      name: path.basename(rootPath) || <span class="branch-1 cbranch-no" title="branch not covered" >rootPath,</span>
-      path: rootPath,
-      type: 'directory',
-      children: []
-    }
-&nbsp;
-    // Create a map to store directory nodes
-    const nodeMap = new Map&lt;string, TreeNode&gt;()
-    nodeMap.set(rootPath, root)
-&nbsp;
-    // Sort files to ensure consistent ordering
-    const sortedFiles = htmlFiles.sort()
-&nbsp;
-    for (const filePath of sortedFiles) {
-      const relativePath = path.relative(rootPath, filePath)
-      const pathParts = relativePath.split(path.sep)
-      
-      let currentPath = rootPath
-      let currentNode = root
-&nbsp;
-      // Create directory nodes as needed
-      for (let i = 0; i &lt; pathParts.length - 1; i++) {
-        currentPath = path.join(currentPath, pathParts[i])
-        
-        if (!nodeMap.has(currentPath)) {
-          const dirNode: TreeNode = {
-            name: pathParts[i],
-            path: currentPath,
-            type: 'directory',
-            children: []
+        sections.get(currentDir)!.push(node)
+      } else if (node.children) {
+        for (const child of node.children) {
+          if (child.type === 'file') {
+            const dirKey = currentDir === 'root' ? node.name : <span class="branch-1 cbranch-no" title="branch not covered" >`${currentDir}/${node.name}`</span>
+            if (!sections.has(dirKey)) {
+              sections.set(dirKey, [])
+            }
+            sections.get(dirKey)!.push(child)
+          } else <span class="missing-if-branch" title="else path not taken" >E</span>{
+            const newDir = <span class="cstat-no" title="statement not covered" >currentDir === 'root' ? node.name : `${currentDir}/${node.name}`</span>
+<span class="cstat-no" title="statement not covered" >            collectFiles(child, newDir, depth + 1)</span>
           }
-          
-          nodeMap.set(currentPath, dirNode)
-          currentNode.children!.push(dirNode)
-          currentNode = dirNode
-        } else {
-          currentNode = nodeMap.get(currentPath)!
         }
       }
-&nbsp;
-      // Add the HTML file node
-      const fileName = pathParts[pathParts.length - 1]
-      const fileNode: TreeNode = {
-        name: fileName,
-        path: filePath,
-        type: 'file'
-      }
-      
-      currentNode.children!.push(fileNode)
     }
 &nbsp;
-    // Sort children in each directory (directories first, then files)
-    this.sortTreeNodes(root)
+    if (tree.children) {
+      for (const child of tree.children) {
+        collectFiles(child)
+      }
+    }
 &nbsp;
-    return root
+    // Sort sections alphabetically (dictionary order)
+    const sortedSections = new Map&lt;string, TreeNode[]&gt;()
+    const sortedKeys = Array.from(sections.keys()).sort((a, b) =&gt; {
+      // Sort alphabetically, with 'root' always first
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (a === 'root') <span class="cstat-no" title="statement not covered" >return -1</span>
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (b === 'root') <span class="cstat-no" title="statement not covered" >return 1</span>
+      return a.localeCompare(b)
+    })
+    
+    for (const key of sortedKeys) {
+      sortedSections.set(key, sections.get(key)!)
+    }
+&nbsp;
+    return sortedSections
   }
 &nbsp;
   /**
-   * Recursively sorts tree nodes (directories first, then files, both alphabetically)
-   * @param node The tree node to sort
+   * Gets relative path for HTML links
    */
-  private sortTreeNodes(node: TreeNode): void {
-    if (node.children) {
-      node.children.sort((a, b) =&gt; {
-        // Directories come before files
-        if (a.type !== b.type) {
-          return a.type === 'directory' ? -1 : 1
-        }
-        // Within the same type, sort alphabetically
-        return a.name.localeCompare(b.name)
-      })
+  private static getRelativePath(filePath: string): string {
+    // Remove leading './' if present
+    return filePath.startsWith('./') ? filePath.substring(2) : <span class="branch-1 cbranch-no" title="branch not covered" >filePath</span>
+  }
 &nbsp;
-      // Recursively sort children
-      for (const child of node.children) {
-        this.sortTreeNodes(child)
+  /**
+   * Counts total number of files in the tree
+   */
+  private static countFiles(tree: TreeNode): number {
+    let count = 0
+    
+    const countRecursive = (node: TreeNode) =&gt; {
+      if (node.type === 'file') {
+        count++
+      } else if (node.children) {
+        for (const child of node.children) {
+          countRecursive(child)
+        }
       }
     }
+    
+    countRecursive(tree)
+    return count
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -574,16 +601,16 @@ export class FileCrawler {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-31T03:40:07.049Z
+                at 2025-08-31T04:14:16.842Z
             </div>
-        <script src="prettify.js"></script>
+        <script src="../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="sorter.js"></script>
-        <script src="block-navigation.js"></script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
     </body>
 </html>
     
