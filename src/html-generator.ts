@@ -424,7 +424,7 @@ export class HtmlGenerator {
     
     items.push(`<span>🕒 Generated: <strong>${new Date(timestamp).toLocaleString()}</strong></span>`)
     
-    return `<div class="metadata">${items.join('')}</div>`
+    return items.join('')
   }
 
   /**
